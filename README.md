@@ -41,7 +41,7 @@ Press SW2 to reset the system
 Component type     | Reference | Description                       | Quantity | Possible sources and notes 
 ------------------ | --------- | --------------------------------- | -------- | --------------------------
 PCB                |           | Micro 8080 Front Panel PCB V1.0   | 1        | OSH Park [Micro 8088 Front Panel V1.0](https://oshpark.com/shared_projects/V4toeD34)<br>Alternatively order from a PCB manufacturer of your choice using provided KiCad files
-LED                | D1        | 3 mm, blue LED indicator          | 1        | Mouser [604-WP710A10QBC/D](https://www.mouser.com/ProductDetail/604-WP710A10QBC-D)<br>Alternatively use 3 mm green LED
+LED                | D1        | 3 mm, blue LED indicator          | 1        | Mouser [604-WP710A10QBC/D](https://www.mouser.com/ProductDetail/604-WP710A10QBC-D)<br>Alternatively use 3 mm green LED<br>Note: Intel* specifies a bi-color green/yellow LED
 LED                | D2        | 3 mm, pink LED indicator          | 1        | Mouser [604-WP7104VRVCWA](https://www.mouser.com/ProductDetail/604-WP7104VRVCWA)<br>Alternatively use 3 mm yellow LED
 Tactile Button     | SW1, SW2  | 6 mm tactile button, projected    | 2        | Mouser [653-B3F-1150](https://www.mouser.com/ProductDetail/653-B3F-1150)
 Key Cap            | SW1       | Omron 4x4 mm key cap, blue        | 1        | Mouser [653-B32-1040](https://www.mouser.com/ProductDetail/653-B32-1040)
