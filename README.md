@@ -12,7 +12,9 @@ It features the standard [Intel* front panel pinout](https://www.intel.com/conte
 
 ### Schematic and PCB Layout
 
-*FIXME*
+[Schematic - Version 1.0](KiCad/Micro_8088_Front_Panel-Schematic-1.0.pdf)
+
+[PCB Layout - Version 1.0](KiCad/Micro_8088_Front_Panel-Board-1.0.pdf)
 
 ### Jumpers, Connectors, and Switches
 
