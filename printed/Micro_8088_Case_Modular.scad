@@ -1,6 +1,6 @@
-// 3D Printed Case for a Micro 8088 system
+// 3D Printed Case for the Micro 8088 system
 //
-// Copyright (C) 2010 - 2023 Sergey Kiselev.
+// Copyright (C) 2019 - 2023 Sergey Kiselev.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+// set only one of the variables below to true to draw the respective part
 generate_preview = true;
 render_back = false;
 render_front = false;
@@ -38,17 +40,13 @@ case_thickness=3.2;
 inside_height=case_height-case_thickness*2;
 inside_depth=case_depth-case_thickness*2;
 inside_width=case_width-case_thickness*2;
-// TODO: cleanup case_top, case_front, case_right
-case_top=case_height-case_thickness*2;
-case_front=case_depth-case_thickness*2;
-case_right=case_width-case_thickness*2;
 corner_radius=1.6;
 nut_inserts_radius = 2.6;       // corner radius for nut inserts
 bracket_thickness=1.6;       // thickness of the material around ISA brackets
 pcb_thickness=1.6;
 in2mm=25.4;                  // mm per inch
 mb_to_case_back=0.065*in2mm;
-mb_to_case_left=5.06;       // carefully adjusted so that ISA brackets don't touch the nut insterts and there is 8 mm space between backplane and floppy drive
+mb_to_case_left=5.06;       // carefully adjusted so that ISA brackets don't touch the nut inserts and there is 8 mm space between backplane and floppy drive
 mb_to_left_slot=0.558*in2mm; // distance between the left edge of motherboard to the center of the leftmost slot cut-out
 slot_height=0.61*in2mm;
 slot_spacing=0.8*in2mm;  // distance between ISA slots
@@ -84,9 +82,6 @@ tolerance=0.1;
 
 dc_socket_x=inside_height-25;   // relative to case inner top
 dc_socket_y=180-case_thickness; // relative to case inner left
-// TODO: cleanup dc_jack_y, dc_jack_z
-dc_jack_y=180-case_thickness; // relative to case inner left
-dc_jack_z=25;           // relative to case inner bottom
 
 // speaker
 speaker_radius=36/2;
@@ -114,8 +109,8 @@ led_radius = 1.6;
 // number of faces in circular objects
 $fn=90;
 
-echo("Space above ISA cards", case_top-standoff_height-pcb_thickness-slot_height-card_height);
-echo("Maximal ISA card length", case_front-bracket_depth-mb_to_case_back);
+echo("Space above ISA cards", inside_height-standoff_height-pcb_thickness-slot_height-card_height);
+echo("Maximal ISA card length", inside_depth-bracket_depth-mb_to_case_back);
 echo("Space between backplane and floppy", case_width-case_thickness*2-mb_to_case_left-6.1*in2mm-floppy_to_case_right);
 
 include <ISA_Brackets.scad>
@@ -143,13 +138,17 @@ if (render_slots_cover) {
     slots_cover();
 }
 if (render_speaker_bracket) {
-    speaker_bracket();
+    rotate([180,0,0]) {
+        speaker_bracket();
+    }
 }
 if (render_keycap) {
-    keycap_6mm_round();
+    rotate([180,0,0]) {
+        keycap_6mm_round();
+    }
 }
 if (render_system_name) {
-    system_name();
+    system_name(true);
 }
 
 
@@ -193,7 +192,7 @@ if (generate_preview) {
         // rotate front panel from X-Y plane to Y-Z plane
         rotate([0,-90,0]) {
             // front panel
-            color ("silver") front_panel();
+            color ("silver") case_front();
             // keycaps for switches
             translate([front_panel_x,front_panel_y,5]) {
                 // keycap for the left (power) button
@@ -211,7 +210,7 @@ if (generate_preview) {
             }   
             
             // system name text
-            system_name();
+            system_name(false);
             
         }
     }
@@ -353,11 +352,7 @@ module case_back() {
     }
 }
 
-// case inside translate
-//    translate([case_thickness+bracket_depth-bracket_thickness,case_thickness+slots_area_left,case_thickness+standoff_height+pcb_thickness])
-
 module slots_cover() {
-    bracket_top_offset=0.11*in2mm;
 //    cutout_width=0.625*in2mm; // too wide, typical case has 0.5"
     cutout_width=0.5*in2mm;
 //    cutout_height=3.688*in2mm;
@@ -406,64 +401,7 @@ module slots_cover() {
     }
 }
 
-
-
-module slots_cover1() {
-    bracket_top_offset=0.11*in2mm;
-//    cutout_width=0.625*in2mm; // too wide, typical case has 0.5"
-    cutout_width=0.5*in2mm;
-//    cutout_height=3.688*in2mm;
-    cutout_height=95;
-    cutout_radius=1.27;
-    mb_to_cutout=8.06-pcb_thickness;
-
-
-    // case inside translate
-    translate([case_thickness+bracket_depth,case_thickness+slots_area_left,case_thickness]) {
-        difference() {
-            union() {
-                translate([-bracket_thickness,-0.6,standoff_height+pcb_thickness-case_thickness/2]) {
-                    cube([bracket_thickness,slots_area_width+0.6*2,bracket_height]);
-                }
-                translate([-bracket_thickness,-bracket_thickness-tolerance,20]) {
-                    cube([bracket_thickness,slots_area_width+bracket_thickness*2+tolerance*2,bracket_height-20]);
-                }
-
-                translate([-5-bracket_thickness*1.5,-bracket_thickness*2-tolerance,20]) {
-                    cube([5+bracket_thickness*1.5,bracket_thickness,bracket_height-20]);
-                }
-
-                translate([-5-bracket_thickness*1.5,+slots_area_width+bracket_thickness+tolerance,20]) {
-                    cube([5+bracket_thickness*1.5,bracket_thickness,bracket_height-20]);
-                }
-
-
-                translate([-bracket_thickness-5,-bracket_thickness*1.5-tolerance,20]) {
-                    rotate([0,0,45])
-                    cube([bracket_thickness/sqrt(2),bracket_thickness/sqrt(2),bracket_height-20]);
-                }
-                translate([-bracket_thickness-5,slots_area_width+bracket_thickness*0.5+tolerance,20]) {
-                    rotate([0,0,45])
-                    cube([bracket_thickness/sqrt(2),bracket_thickness/sqrt(2),bracket_height-20]);
-                }
-            }
-            translate([-bracket_thickness-tolerance,bracket_width/2+bracket_tab_offset,standoff_height+pcb_thickness]){
-                // ISA slot cutouts
-                for(slot_num = [0 : slots-1]) {
-                    translate([0,slot_spacing*slot_num-cutout_width/2+cutout_radius,mb_to_cutout+cutout_radius]) {
-                        minkowski() {
-                            cube([bracket_thickness+tolerance*2,cutout_width-cutout_radius*2,cutout_height-cutout_radius*2]);
-                            rotate([0,90,0]) cylinder(h=bracket_thickness+tolerance*2,r=cutout_radius);
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-module front_panel() {
+module case_front() {
     difference() {
         union () {
             case_front_back_panel();
@@ -577,12 +515,14 @@ module case_front_back_panel() {
     }
 }
 
-module system_name() {
-    // frame for the text
-    difference() {
-        cube([case_height,case_width,0.2]);
-        translate([0.8,0.8,-tolerance]) {
-            cube([case_height-0.8*2,case_width-0.8*2,0.2+tolerance*2]);
+module system_name(frame) {
+    if (frame) {
+        // frame for the text
+        difference() {
+            cube([case_height,case_width,0.2]);
+            translate([0.8,0.8,-tolerance]) {
+                cube([case_height-0.8*2,case_width-0.8*2,0.2+tolerance*2]);
+            }
         }
     }
     // system name text
@@ -702,27 +642,25 @@ module case_top() {
 
 // case top or bottom panels with mounting holes
 module case_top_bottom_panel() {
-    union() {
-        difference() {
-            translate([tolerance,tolerance,0]) {
-                cube([inside_depth-tolerance*2,inside_width-tolerance*2,case_thickness]);
-            }
-            // left / back screw hole
-            translate([9,9,0]) {
-                m3_flat_screw_hole();
-            }
-            // right / back screw hole
-            translate([9,inside_width-9,0]) {
-                m3_flat_screw_hole();
-            }
-            // left / from screw hole
-            translate([inside_depth-9,9,0]) {
-                m3_flat_screw_hole();
-            }
-            // right / from screw hole
-            translate([inside_depth-9,inside_width-9,0]) {
-                m3_flat_screw_hole();
-            }
+    difference() {
+        translate([tolerance,tolerance,0]) {
+            cube([inside_depth-tolerance*2,inside_width-tolerance*2,case_thickness]);
+        }
+        // left / back screw hole
+        translate([9,9,0]) {
+            m3_flat_screw_hole();
+        }
+        // right / back screw hole
+        translate([9,inside_width-9,0]) {
+            m3_flat_screw_hole();
+        }
+        // left / from screw hole
+        translate([inside_depth-9,9,0]) {
+            m3_flat_screw_hole();
+        }
+        // right / from screw hole
+        translate([inside_depth-9,inside_width-9,0]) {
+            m3_flat_screw_hole();
         }
     }
 }
