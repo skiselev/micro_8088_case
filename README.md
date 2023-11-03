@@ -72,5 +72,5 @@ PCB                |           | Micro 8080 Front Panel PCB V1.0   | 1        | 
 LED                | D1        | 3 mm, blue LED indicator          | 1        | Mouser [604-WP710A10QBC/D](https://www.mouser.com/ProductDetail/604-WP710A10QBC-D)<br>Alternatively use 3 mm green LED<br>Note: Intel* specifies a bi-color green/yellow LED
 LED                | D2        | 3 mm, pink LED indicator          | 1        | Mouser [604-WP7104VRVCWA](https://www.mouser.com/ProductDetail/604-WP7104VRVCWA)<br>Alternatively use 3 mm yellow LED
 Tactile Button     | SW1, SW2  | 6 mm tactile button, projected    | 2        | Mouser [653-B3F-1052](https://www.mouser.com/ProductDetail/653-B3F-1052), [653-B3F-1050](https://www.mouser.com/ProductDetail/653-B3F-1050)
-Key Cap            | SW1, SW2  | Omron 6 mm round key cap, black   | 2        | Mouser [653-B32-2000](https://www.mouser.com/ProductDetail/653-B32-2000)
+Key Cap            | SW1, SW2  | Omron 6 mm round keycap, black    | 2        | Mouser [653-B32-2000](https://www.mouser.com/ProductDetail/653-B32-2000). Or use 3D printed keycaps
 Pin Header         | J1        | 2x5 pin header, 2.54 mm pitch     | 1        | Mouser [855-M20-9980545](https://www.mouser.com/ProductDetail/855-M20-9980545)
