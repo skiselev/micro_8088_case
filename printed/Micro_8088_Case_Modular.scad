@@ -35,12 +35,12 @@ render_system_name = false;
 case_depth=200;
 case_width=200;
 case_height=140;
-case_thickness=3.2;
+case_thickness=3.0;
 // case inside dimensions
 inside_height=case_height-case_thickness*2;
 inside_depth=case_depth-case_thickness*2;
 inside_width=case_width-case_thickness*2;
-corner_radius=1.6;
+corner_radius=case_thickness/2;
 nut_inserts_radius = 2.6;       // corner radius for nut inserts
 bracket_thickness=1.6;       // thickness of the material around ISA brackets
 pcb_thickness=1.6;
