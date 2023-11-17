@@ -5,7 +5,7 @@ Case for [Micro 8088](https://github.com/skiselev/micro_8088) and [ISA 8-Bit Bac
 This case is intended to be used with [Micro 8088](https://github.com/skiselev/micro_8088)
 and [ISA 8-Bit Backplane](https://github.com/skiselev/isa8_backplane) based computer.
 
-The front panel features the standard [Intel* front panel pinout](https://www.intel.com/content/www/us/en/support/articles/000005643/boards-and-kits/desktop-boards.html), and can work with other systems as well.
+The front panel features the standard [Intel* 9-pin front panel pinout](https://www.intel.com/content/www/us/en/support/articles/000007309/intel-nuc.html), and can work with other systems as well.
 
 ![Micro 8088 Case](images/Micro_8088_Case.jpg)
 
@@ -37,7 +37,6 @@ M3 x 1.8 mm square nuts    | 16        | Hold case sides together
 M3 x 8 mm pan head screws  | 6         | Floppy drive
 M3 x 6 mm pan head screws  | 15        | Backplane - 6 screws, front panel - 2 screws, ISA cards - 7 screws
 
-
 ### Front Panel Schematic and PCB Layout
 
 [Schematic - Version 1.0](KiCad/Micro_8088_Front_Panel-Schematic-1.0.pdf)
@@ -61,7 +60,7 @@ Press SW1 to turn on/off the system
 #### SW2 - Reset Switch
 Press SW2 to reset the system
 
-### Bill of Material - Version 1.0
+### Front Panel Bill of Material
 
 [Micro 8088 Front Panel project on Mouser.com](https://www.mouser.com/ProjectManager/ProjectDetail.aspx?AccessID=e9e37fe2f8) - View and order all components except of the PCB.
 [Micro 8088 Front Panel project on OSH Park](https://oshpark.com/shared_projects/V4toeD34) - View and order the PCB.
@@ -74,3 +73,18 @@ LED                | D2        | 3 mm, pink LED indicator          | 1        | 
 Tactile Button     | SW1, SW2  | 6 mm tactile button, projected    | 2        | Mouser [653-B3F-1052](https://www.mouser.com/ProductDetail/653-B3F-1052), [653-B3F-1050](https://www.mouser.com/ProductDetail/653-B3F-1050)
 Key Cap            | SW1, SW2  | Omron 6 mm round keycap, black    | 2        | Mouser [653-B32-2000](https://www.mouser.com/ProductDetail/653-B32-2000). Or use 3D printed keycaps
 Pin Header         | J1        | 2x5 pin header, 2.54 mm pitch     | 1        | Mouser [855-M20-9980545](https://www.mouser.com/ProductDetail/855-M20-9980545)
+
+### Front Panel Cables Bill of Material
+
+Component type     | Reference | Description                           | Quantity      | Possible sources and notes 
+------------------ | --------- | ------------------------------------- | ------------- | --------------------------
+Connector          | J1        | 2x5 pin wire housing, 2.54 mm pitch   | 1             | Front panel connector. Mouser [855-M20-1070500](https://www.mouser.com/ProductDetail/855-M20-1070500)
+Connector          |           | 4 pin wire housing, 2.54 mm pitch     | 2             | Speaker connector. Power switch and Power LED connector for the ISA 8-bit backplane. Mouser [855-M20-1060400](https://www.mouser.com/ProductDetail/855-M20-1060400)
+Connector          |           | 2 pin wire housing, 2.54 mm pitch     | 2             | Reset switch connector. HDD LED connector. Mouser [855-M20-1060200](https://www.mouser.com/ProductDetail/855-M20-1060200)
+Contact            |           | Female crimp contact                  | 20            | All connectors. Mouser [855-M20-1160042](https://www.mouser.com/ProductDetail/855-M20-1160042), [855-M20-1180042](https://www.mouser.com/ProductDetail/855-M20-1180042)
+Wire               |           | 22 AWG - 26 AWG stranded wire, white  | 60 cm or 2'   | Negative wires for LEDs and switches
+Wire               |           | 22 AWG - 26 AWG stranded wire, black  | 10 cm or 1/3' | Negative wire for the speaker
+Wire               |           | 22 AWG - 26 AWG stranded wire, red    | 30 cm or 1'   | Positive wire for the speaker and the HDD LED
+Wire               |           | 22 AWG - 26 AWG stranded wire, green  | 10 cm or 1/3' | Positive wire for the Power LED
+Wire               |           | 22 AWG - 26 AWG stranded wire, blue   | 30 cm or 1'   | Positive wire for the Reset switch
+Wire               |           | 22 AWG - 26 AWG stranded wire, yellow | 10 cm or 1/3' | Positive wire for the Power switch
