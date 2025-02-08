@@ -73,6 +73,7 @@ LED                | D2        | 3 mm, pink LED indicator          | 1        | 
 Tactile Button     | SW1, SW2  | 6 mm tactile button, projected    | 2        | Mouser [653-B3F-1052](https://www.mouser.com/ProductDetail/653-B3F-1052), [653-B3F-1050](https://www.mouser.com/ProductDetail/653-B3F-1050)
 Key Cap            | SW1, SW2  | Omron 6 mm round keycap, black    | 2        | Mouser [653-B32-2000](https://www.mouser.com/ProductDetail/653-B32-2000). Or use 3D printed keycaps
 Pin Header         | J1        | 2x5 pin header, 2.54 mm pitch     | 1        | Mouser [855-M20-9980545](https://www.mouser.com/ProductDetail/855-M20-9980545)
+Speaker            |           | 36 mm x 4.6 mm, 8 ohm, 1 W        | 1        | Mouser [665-AS03608MRLW100R](https://www.mouser.com/ProductDetail/665-AS03608MRLW100R)
 
 ### Front Panel Cables Bill of Material
 
